@@ -1,70 +1,232 @@
-# Getting Started with Create React App
+# TokPlay
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+2 fitur Halaman yang dikembangkan :
+ - Home
+    Detail fitur : List video
+ - Video Detail 
+    Detail fitur : Product List, Comment List, and Submit Comment
 
-## Available Scripts
 
-In the project directory, you can run:
+## Database Structure
+- Database Name : TokopediaVideo
+- Port : 27017
+- 3 collections:
+    - videos 
+        - id : ObjectId
+        - title : String
+        - account_name : String
+        - img_url : String
+        - video_url : String
+    - products 
+        - _id : ObjectId
+        - video_id:ObjectId
+        - title : String
+        - price : Int32
+        - product_url : String 
+        - img_url : String
+    - comments
+        - _id : ObjectId
+        - video_id : ObjectId
+        - comment : String
+        - username : String
+        - created_at : Date
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Architecture
+### Back End
+Terdapat 3 Layer yang diterapkan pada repository ini, diantaranya adalah :
+- Controller/Handler Layer
+    Merupakan penghubung antara klien dengan server dari aplikasi. Terutama juga unuk memfasilitasi data dan mengkoordinasikan aksi yang akan diambil
+- Service Layer (Bussines logic)
+    Tujuan dari layer ini adalah untuk mengimplementasikan spesifik operasi dan alur dari kebutuhan aplikasi seperti implementasi alur bisnis, pemrosesan data, interaksi dengan later data, dll.
+- Data Access Layer
+    adalah komponen yang berinteraksi dengan database seperti pengambilan data, memanipulasi data, mengkoneksikan database, memetakan data, dan melakukan alur transaksi
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Front End
+Framework React JS
 
-### `npm test`
+## List API request and response
+### GET /video
+Return all video in the database
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **URL Params** : None
+- **Data Params** : None
+- **Headers** : Content-type: application/json
+- **Success Response** 
+- Code: 200
 
-### `npm run build`
+Content:
+```JavaScript
+{
+    video: [
+        {video_objects},
+        {video_objects},
+        {video_objects}
+    ]
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### GET /video/:id
+Return all video in the database
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **URL Params** : *Required* : id = [string]
+- **Data Params** : None
+- **Headers** : Content-type: application/json
+- **Success Response** 
+- Code: 200
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Content:
+```JavaScript
+{
+    video: [
+        {video_objects},
+        {video_objects},
+        {video_objects}
+    ]
+}
+```
+### GET /video/products
+Return all video in the database
 
-### `npm run eject`
+- **URL Params** : None
+- **Data Params** : None
+- **Headers** : Content-type: application/json
+- **Success Response** 
+- Code: 200
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Content:
+```JavaScript
+{
+    products: [
+        {video_objects},
+        {video_objects},
+        {video_objects}
+    ]
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### GET /video/comments
+Return all video in the database
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **URL Params** : None
+- **Data Params** : None
+- **Headers** : Content-type: application/json
+- **Success Response** 
+- Code: 200
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Content:
+```JavaScript
+{
+    comments: [
+        {video_objects},
+        {video_objects},
+        {video_objects}
+    ]
+}
+```
 
-## Learn More
+### GET /video/:id/product
+Return all video in the database
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **URL Params** : *Required* : id = [string]
+- **Data Params** : None
+- **Headers** : Content-type: application/json
+- **Success Response** 
+- Code: 200
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Content:
+```JavaScript
+{
+    products: [
+        {video_objects},
+        {video_objects},
+        {video_objects}
+    ]
+}
+```
 
-### Code Splitting
+### GET /video/:id/comments
+Return all video in the database
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **URL Params** : *Required* : id = [string]
+- **Data Params** : None
+- **Headers** : Content-type: application/json
+- **Success Response** 
+- Code: 200
 
-### Analyzing the Bundle Size
+Content:
+```JavaScript
+{
+    comments: [
+        {video_objects},
+        {video_objects},
+        {video_objects}
+    ]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### POST /submit
+Return all video in the database
 
-### Making a Progressive Web App
+- **URL Params** : None
+- **Data Params** : 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```JSON
+{
+    "video_id": string,
+    "comment": string,
+    "username": string
+}
+```
 
-### Advanced Configuration
+- **Headers** : Content-type: application/json
+- **Success Response** 
+- Code: 200
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Content:
+```JSON
+{
+    video: [
+        {video_objects},
+        {video_objects},
+        {video_objects}
+    ]
+}
+```
 
-### Deployment
+### POST /video/add
+Return all video in the database
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **URL Params** : None
+- **Data Params** : 
 
-### `npm run build` fails to minify
+```JSON
+{
+    "title" : string,
+    "account_name": string,
+    "img_url" : string
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Headers** : Content-type: application/json
+- **Success Response** 
+- Code: 200
+
+Content:
+```JSON
+{
+    video: [
+        {video_objects},
+        {video_objects},
+        {video_objects}
+    ]
+}
+```
+
+## Run in local
+- Run **npm init**
+- Run **npm install express body-parser mongoose nodemon dotenv**
+- Import db from dbScript
+- Replace DATABASE_URL value in .env file with your MongoDB Connection
+- Run **npm start**
+- Running on https://localhost:3000

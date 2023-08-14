@@ -7,7 +7,7 @@ const path = require('path');
 const port = parseInt(process.env.PORT)
 const mongoose = require('mongoose');
 const mongoString = process.env.DATABASE_URL;
-const routes = require('./routes/video.route.js');
+const router = require('./routes/index');
 const cors = require('cors')
 
 mongoose.connect(mongoString); // connect database
@@ -20,9 +20,6 @@ database.on('error', (error) => {
 database.once('connected', () => {
     console.log('Database Connected');
 })
-
-
-const videoRoute = require("./routes/video.route.js")
 
 app.use(bodyParser.json());
 app.use(cors())
@@ -40,7 +37,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use("/video", videoRoute);
+app.use("/api", router)
 app.use(express.json());
 
 app.listen(port, () => {

@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "64c2112ba33ea326d7c183d4"
+  },
+  "video_id": {
+    "$oid": "64bd15e08fc799b964fd8c1a"
+  },
+  "comment": "kopi segar dan tahan lama",
+  "username": "agus",
+  "created_at": {
+    "$date": "2023-07-02T05:30:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64c2a4dd1269532d81163604"
+  },
+  "video_id": {
+    "$oid": "64bd1a358fc799b964fd8c1c"
+  },
+  "comment": "bahannya sangat nyaman",
+  "username": "heri",
+  "created_at": {
+    "$date": "2023-07-02T05:30:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64c2ab6b3d8eb143fb81e2f5"
+  },
+  "video_id": {
+    "$oid": "64bd1b548fc799b964fd8c1d"
+  },
+  "username": "64bd1b548fc799b964fd8c1d",
+  "comment": "bantalnya nyaman",
+  "created_at": {
+    "$date": "2023-07-27T17:37:47.359Z"
+  },
+  "__v": 0
+}]
